@@ -144,8 +144,8 @@ export default function() {
       filter(
         client =>
           client.address.state === 'Wyoming' && client.gender === 'female'
-      )(clients)
-    )
+      )
+    )(clients)
   }
 
   const ex5 =

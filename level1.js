@@ -39,13 +39,13 @@ export default function() {
 `
   const exercise4 = _ => {
     const numbers = [1, 3, 6, 10, 13, 16]
-    //  return compose(
-    //  reduce((acc, n) => (acc + n ? acc + 1, acc: 0)),
-    //filter(n => n % 2 === 0),
-    //map(n => n * n * n)
-    //)(numbers)
-  }
 
+    return compose(
+      reduce((acc, val) => acc + val, 0),
+      map(n => n * 3),
+      filter(n => n % 2 == 0)
+    )(numbers)
+  }
   const ex5 = 'Use map to find the square root of each number'
   const exercise5 = _ => {
     const numbers = [9, 16, 25, 36, 49, 64, 81]
@@ -72,8 +72,12 @@ export default function() {
      checkPrimes formula and write it functionally into your compose **
   `
   const exercise7 = _ => {
-    //const numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-    return compose
+    const numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    return compose(
+      reduce((acc, n) => (acc + n, 0)),
+      map(n => n - 1),
+      filter(n => n.prime)
+    )(numbers)
   }
 
   /* tests to validate exercises go here */
