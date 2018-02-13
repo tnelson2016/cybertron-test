@@ -118,41 +118,66 @@ export default function() {
   const ex1 =
     'Use map to return a concatenated first and last name of each client.'
   const exercise1 = _ => {
-    return []
+    return clients.map(
+      client => client.name.firstName + ' ' + client.name.lastName
+    )
   }
 
   const ex2 = 'Use filter to return clients from Wyoming'
   const exercise2 = _ => {
-    return []
+    return clients.filter(client => client.address.state === 'Wyoming')
   }
 
   const ex3 = 'Use reduce to count the number of people with green eyes '
   const exercise3 = _ => {
-    return 0
+    return clients.reduce(
+      (acc, clients) => (clients.eyeColor === 'green' ? acc + 1 : acc),
+      0
+    )
   }
 
   const ex4 = `Use map, filter and reduce with compose to return the full name (as a string) of the female from Wyoming. `
   const exercise4 = _ => {
-    return null
+    return compose(
+      reduce((acc, val) => acc + val, ''),
+      map(client => client.name.firstName + ' ' + client.name.lastName),
+      filter(
+        client =>
+          client.address.state === 'Wyoming' && client.gender === 'female'
+      )(clients)
+    )
   }
 
   const ex5 =
     'Use map and filter to return the full address of the clients living in North Carolina'
   const exercise5 = _ => {
-    return []
+    const addresses = clients.map(x => x.address)
+    const filtered = addresses.filter(
+      client => client.state === 'North Carolina'
+    )
+    return filtered.map(
+      client => `${client.street} ${client.city}, ${client.state} ${client.zip}`
+    )
   }
-
   const ex6 = 'use filter to remove anyone over the age of 25'
   const exercise6 = _ => {
-    return []
+    return clients.filter(client => client.age <= 25)
   }
 
   const ex7 =
     'use reduce to count the number of males, age 22 - 27, who have green eyes'
   const exercise7 = _ => {
-    return 0
+    return clients.reduce(
+      (acc, client) =>
+        client.eyeColor === 'green' &&
+        client.age > 21 &&
+        client.age < 28 &&
+        client.gender === 'male'
+          ? acc + 1
+          : acc,
+      0
+    )
   }
-
   /* tests to validate exercises go here */
   test('test', assert => {
     assert.plan(7)

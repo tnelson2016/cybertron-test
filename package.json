@@ -13,7 +13,7 @@
   },
   "scripts": {
     "lint": "eslint index.js",
-    "start": "browser-sync start --server --files *.js"
+    "start": "serve -c 0 ."
   },
   "devDependencies": {
     "browser-sync": "^2.23.6",
